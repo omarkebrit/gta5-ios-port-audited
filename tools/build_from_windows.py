@@ -59,4 +59,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except (OSError, subprocess.CalledProcessError) as error:
+        sys.exit(f'Build submission stopped: {error}. Check your GitHub login and repository access.')

@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 import subprocess
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -43,4 +44,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except (OSError, subprocess.CalledProcessError) as error:
+        sys.exit(f'Publishing stopped: {error}. No force-push was attempted.')
