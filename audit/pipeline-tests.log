@@ -1,0 +1,13 @@
+test_arbitrary_zip_is_not_an_ipa (test_build_pipeline.BuildPipelineTests.test_arbitrary_zip_is_not_an_ipa) ... ok
+test_compile_failure_cannot_link_stale_air (test_build_pipeline.BuildPipelineTests.test_compile_failure_cannot_link_stale_air) ... ok
+test_prebuilt_translator_success_cannot_hide_missing_shader (test_build_pipeline.BuildPipelineTests.test_prebuilt_translator_success_cannot_hide_missing_shader) ... ok
+test_wrong_engine_is_rejected_before_upload (test_build_pipeline.BuildPipelineTests.test_wrong_engine_is_rejected_before_upload) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.023s
+
+OK
+pgmsl: no output
+controlled compiler error
+iphoneos: attempted 2 shader compilations in 1 batches
+translated 1, failed 1

@@ -1,0 +1,115 @@
+{
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "machine": "x86_64",
+  "summary": {
+    "blocked": 12,
+    "passed": 9
+  },
+  "tests": [
+    {
+      "test": "arm_shared_simd",
+      "status": "blocked",
+      "reason": "Requires macOS/Apple Silicon, Xcode, WABT and SIMDe."
+    },
+    {
+      "test": "asset_hints",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "test": "asset_pipeline",
+      "status": "blocked",
+      "reason": "Requires the real generated game.h and a configured HTTP range server."
+    },
+    {
+      "test": "bc_textures",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "test": "controller_look",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "test": "engine_configuration",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "test": "frame_metrics",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "test": "frame_rate",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "test": "frame_reports",
+      "status": "blocked",
+      "reason": "Missing Source/NativeFrameReports.inc (legacy renderer test)."
+    },
+    {
+      "test": "memory_budget",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "test": "metal_buffer_cache",
+      "status": "blocked",
+      "reason": "Missing PlayGTA5MetalBufferCache.h."
+    },
+    {
+      "test": "native_runtime",
+      "status": "blocked",
+      "reason": "Requires macOS/Apple Silicon, Xcode, WABT and SIMDe."
+    },
+    {
+      "test": "native_uniform_resolver",
+      "status": "blocked",
+      "reason": "Missing webgpu.h and NativeUniforms.inc (legacy renderer test)."
+    },
+    {
+      "test": "packed_asset_cache",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "test": "prepared_draws",
+      "status": "blocked",
+      "reason": "Missing webgpu.h and NativeUniforms/NativePipelineCache/NativePreparedDraws.inc."
+    },
+    {
+      "test": "ring_packets",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "test": "state_packing",
+      "status": "blocked",
+      "reason": "Missing Resources/gpu-batch.js (legacy renderer test)."
+    },
+    {
+      "test": "texture_rows",
+      "status": "blocked",
+      "reason": "Missing Source/NativeTextureRows.h."
+    },
+    {
+      "test": "texture_views",
+      "status": "blocked",
+      "reason": "Missing Source/NativeTextureView.h."
+    },
+    {
+      "test": "warm_dispatch",
+      "status": "blocked",
+      "reason": "WarmDispatchHarness.inc references removed WebGPU renderer files."
+    },
+    {
+      "test": "warm_javascript",
+      "status": "blocked",
+      "reason": "WarmDispatchHarness.inc references removed WebGPU renderer files."
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # GTA V on iPhone (5★ Port)
 
+> **Prepared audit copy:** no verified IPA has been produced in this session. Read [README-AUDITED.md](README-AUDITED.md) and [audit/REPORT.md](audit/REPORT.md) before relying on the upstream claims below. A normal retail PC installation does not supply the required WebAssembly engine.
+
 > [!TIP]
 > **🆕 New in v1.2: build the app right from your iPhone, no computer needed.**
 > Open **[fivestarport.vercel.app](https://fivestarport.vercel.app)**, sign in with GitHub, pick three files, and about 25 minutes later your app is ready to install. Free.

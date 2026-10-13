@@ -1,102 +1,125 @@
-# Builds YOUR unsigned IPA from YOUR game files.
-# Run it from the Actions tab of your own PRIVATE copy of this repository
-# (or let the website builder start it for you).
 name: Build my IPA
 
 on:
   workflow_dispatch:
     inputs:
-      game_files:
-        description: "Where the build gets your game files"
-        type: choice
-        options:
-          - my server (Tailscale)
-          - uploaded with the website builder
-        default: my server (Tailscale)
+      input_release:
+        description: 'Temporary private input release created by tools/build_from_windows.py'
+        type: string
+        required: true
+      input_sha256:
+        description: 'SHA-256 of gta5-build-inputs.zip (printed by the uploader)'
+        type: string
+        required: true
       paid_account:
-        description: "I have a paid Apple developer account (request extra memory)"
+        description: 'Request memory entitlements for a paid Apple developer team'
         type: boolean
         default: false
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: private-ipa-build
+  cancel-in-progress: false
 
 jobs:
-  build:
-    runs-on: macos-15
-    timeout-minutes: 240
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
     env:
-      FROM_UPLOAD: ${{ inputs.game_files == 'uploaded with the website builder' }}
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      INPUT_RELEASE: ${{ inputs.input_release }}
+      INPUT_SHA256: ${{ inputs.input_sha256 }}
     steps:
-      - name: Refuse to build in a public repository
-        if: ${{ !github.event.repository.private }}
-        run: |
-          echo "::error::Make your copy of this repository PRIVATE first. The app you build contains the game engine from your own files, and public build results can be downloaded by anyone."
-          exit 1
-
-      - uses: actions/checkout@v4
-
-      - name: Get the files you uploaded with the website builder
-        if: ${{ env.FROM_UPLOAD == 'true' }}
-        uses: actions/checkout@v4
-        with:
-          ref: build-inputs
-          path: uploaded-inputs
-
-      - name: Join your tailnet (to reach your game-file server)
-        if: ${{ env.FROM_UPLOAD != 'true' }}
-        uses: tailscale/github-action@v4
-        with:
-          authkey: ${{ secrets.TS_AUTHKEY }}
-
-      - name: Check your server answers
-        if: ${{ env.FROM_UPLOAD != 'true' }}
+      - name: Require a private repository
         env:
-          SERVER: ${{ secrets.GAME_SERVER_URL }}
+          PRIVATE: ${{ github.event.repository.private }}
         run: |
-          for i in $(seq 1 30); do
-            if curl -sfI "$SERVER/data/manifest.json" > /dev/null; then echo "Server reachable."; exit 0; fi
-            sleep 5
-          done
-          echo "::error::Can't reach $SERVER/data/manifest.json from the build machine. Is your server running and is GAME_SERVER_URL right?"
-          exit 1
-
-      - name: Install build tools
-        run: brew install xcodegen
-
-      - name: Use this repository's prebuilt shader translator, if it has one
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          if gh release download shadertool-1 --repo "${{ github.repository }}" --pattern pgmsl-macos-arm64.tar.gz --dir "$RUNNER_TEMP" 2>/dev/null; then
-            echo "PGMSL_PREBUILT_URL=file://$RUNNER_TEMP/pgmsl-macos-arm64.tar.gz" >> "$GITHUB_ENV"
+          if [ "$PRIVATE" != true ]; then
+            echo '::error::This build requires a private repository because the IPA contains proprietary engine and shaders.'
+            exit 1
           fi
-
-      - name: Make sure the Metal shader compiler is installed
-        run: xcrun -sdk iphoneos metal --version > /dev/null 2>&1 || xcodebuild -downloadComponent MetalToolchain
-
-      - name: Build the IPA (about 25 minutes)
-        env:
-          SERVER: ${{ secrets.GAME_SERVER_URL }}
-          JOBS: "2"
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Download and validate only the minimal user-supplied inputs
         run: |
-          if [ "$FROM_UPLOAD" = "true" ]; then
-            /usr/bin/python3 app/Scripts/assemble_inputs.py --inputs uploaded-inputs --out "$RUNNER_TEMP/game-files"
-            ./build_ipa.sh --mirror "$RUNNER_TEMP/game-files" ${{ inputs.paid_account && '--paid' || '' }}
+          [[ "$INPUT_RELEASE" =~ ^build-inputs-[0-9a-f]{16}$ ]] || { echo '::error::Run the Windows uploader to supply the required inputs.'; exit 1; }
+          [[ "$INPUT_SHA256" =~ ^[0-9a-f]{64}$ ]] || { echo '::error::Missing or invalid input checksum.'; exit 1; }
+          gh release download "$INPUT_RELEASE" --repo "$REPO" --pattern gta5-build-inputs.zip --dir "$RUNNER_TEMP/inputs"
+          printf '%s  %s\n' "$INPUT_SHA256" "$RUNNER_TEMP/inputs/gta5-build-inputs.zip" | sha256sum --check
+          python3 app/Scripts/minimal_inputs.py unpack --zip "$RUNNER_TEMP/inputs/gta5-build-inputs.zip" --out "$RUNNER_TEMP/game-files"
+      - name: Remove runner copies
+        if: ${{ always() }}
+        run: rm -rf "$RUNNER_TEMP/inputs" "$RUNNER_TEMP/game-files"
+
+  build:
+    needs: preflight
+    runs-on: macos-15
+    timeout-minutes: 120
+    permissions:
+      contents: write # Delete only the temporary input release after successful verification.
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      INPUT_RELEASE: ${{ inputs.input_release }}
+      INPUT_SHA256: ${{ inputs.input_sha256 }}
+      PYTHON: python3
+      JOBS: '2'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.11'
+      - name: Confirm Apple Silicon and record toolchain
+        run: |
+          test "$(uname -m)" = arm64
+          mkdir -p app/Build/Audit
+          { uname -a; xcodebuild -version; python3 --version; } > app/Build/Audit/environment.log
+      - name: Install project and Metal build tools
+        run: |
+          brew list xcodegen >/dev/null 2>&1 || brew install xcodegen
+          xcrun -sdk iphoneos metal --version >/dev/null 2>&1 || xcodebuild -downloadComponent MetalToolchain
+      - name: Download and verify minimal inputs
+        run: |
+          gh release download "$INPUT_RELEASE" --repo "$REPO" --pattern gta5-build-inputs.zip --dir "$RUNNER_TEMP/inputs"
+          printf '%s  %s\n' "$INPUT_SHA256" "$RUNNER_TEMP/inputs/gta5-build-inputs.zip" | shasum -a 256 --check
+          python3 app/Scripts/minimal_inputs.py unpack --zip "$RUNNER_TEMP/inputs/gta5-build-inputs.zip" --out "$RUNNER_TEMP/game-files"
+      - name: Build ARM64 application for local game files
+        env:
+          PAID: ${{ inputs.paid_account }}
+        run: |
+          if [ "$PAID" = true ]; then
+            ./build_ipa.sh --mirror "$RUNNER_TEMP/game-files" --paid
           else
-            ./build_ipa.sh "$SERVER" ${{ inputs.paid_account && '--paid' || '' }}
+            ./build_ipa.sh --mirror "$RUNNER_TEMP/game-files"
           fi
-
-      - uses: actions/upload-artifact@v4
+      - name: Verify ad-hoc code signature and IPA structure
+        run: |
+          codesign --verify --deep --strict app/Build/Release/Build/Products/Release-iphoneos/PlayGTA5Native.app
+          python3 app/Scripts/verify_ipa.py GTA5Port.ipa --report app/Build/Audit/ipa-verification.json
+      - name: Save the IPA as a private Actions artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: GTA5Port-ipa
-          path: GTA5Port.ipa
+          path: |
+            GTA5Port.ipa
+            app/Build/Audit/ipa-verification.json
+          if-no-files-found: error
           retention-days: 3
-
-      - name: Publish the IPA as a release in this private repository (easy to download on a phone)
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Delete successful build inputs from GitHub
+        run: gh release delete "$INPUT_RELEASE" --repo "$REPO" --yes --cleanup-tag
+      - name: Remove private input and generated runner copies
+        if: ${{ always() }}
         run: |
-          gh release delete latest-ipa --repo "${{ github.repository }}" --yes --cleanup-tag 2>/dev/null || true
-          gh release create latest-ipa GTA5Port.ipa --repo "${{ github.repository }}" --title "Your app (built $(date -u +%Y-%m-%d))" \
-            --notes "Download GTA5Port.ipa and open it with SideStore or AltStore. This release is private like the repository."
+          rm -rf "$RUNNER_TEMP/inputs" "$RUNNER_TEMP/game-files" app/Generated app/GeneratedResources app/Build/Inputs app/Build/MetalShaders app/Resources/manifest.json
+      - name: Save minimal build diagnostics
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: build-diagnostics
+          path: |
+            app/Build/Audit/*.log
+            app/Build/Audit/*.json
+          if-no-files-found: warn
+          retention-days: 3

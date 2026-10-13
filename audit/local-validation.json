@@ -1,0 +1,27 @@
+{
+  "upstream_input_preflight": {
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Missing b/8b0b5899ed/game.wasm in /workspace/gta5-ios-port. Use the folder that contains data/ and b/.\n"
+  },
+  "actual_build_attempt": {
+    "exit_code": 1,
+    "stdout": "This build requires an Apple Silicon macOS host with Xcode. Use the prepared GitHub Actions workflow from Windows.\n",
+    "stderr": ""
+  },
+  "workflow_lint": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "shell_syntax": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "python_syntax": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+}

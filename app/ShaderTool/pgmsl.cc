@@ -204,5 +204,5 @@ int main(int argc, char** argv) {
         if (Translate(hash, stage, path, argv[2], refl)) ok++; else failed++;
     }
     std::cerr << "translated " << ok << ", failed " << failed << "\n";
-    return 0;
+    return failed ? 1 : 0;
 }

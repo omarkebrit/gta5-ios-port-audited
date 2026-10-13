@@ -13,6 +13,7 @@ Outputs (GeneratedResources/, bundled by project.yml):
 Usage: build_metal_shaders.py <shader dir> [--sdk iphoneos|iphonesimulator ...]
 """
 import argparse, concurrent.futures, json, os, shutil, subprocess, sys, tempfile
+from pathlib import Path
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WORK = os.path.join(ROOT, 'Build', 'MetalShaders')
@@ -47,7 +48,7 @@ def main():
     tool = os.environ.get('PGMSL') or os.path.join(ROOT, 'Tools', 'pgmsl', 'pgmsl')
     if not os.path.exists(tool):
         sys.exit('The shader translator is missing: run Scripts/fetch_shader_tool.py (or build it with ShaderTool/build_pgmsl.sh).')
-    index = json.load(open(os.path.join(args.shaders, 'index.json')))
+    index = json.loads(Path(args.shaders, 'index.json').read_text())
     msl = os.path.join(WORK, 'msl')
     os.makedirs(msl, exist_ok=True)
     os.makedirs(OUT, exist_ok=True)
@@ -61,18 +62,22 @@ def main():
     print(r.stderr.strip().splitlines()[-1] if r.stderr.strip() else 'pgmsl: no output')
     if r.returncode:
         sys.exit(r.stderr)
+    translated = [json.loads(line) for line in Path(reflection).read_text().splitlines()]
+    expected_hashes = {h for h, _ in entries}
+    actual_hashes = {record['h'] for record in translated}
+    if not expected_hashes or len(translated) != len(entries) or actual_hashes != expected_hashes:
+        sys.exit('Shader translation is incomplete; refusing to build a partial Metal library.')
 
     # reflection + labels + constant tables (binding 15: one u32 per 16-byte row)
     with open(os.path.join(OUT, 'shader-reflection.jsonl'), 'w') as out:
-        for line in open(reflection):
-            o = json.loads(line)
+        for o in translated:
             rec = index[o['h']]
             o['label'] = rec.get('effect', '?') + '::' + rec.get('program', '?')
             if rec.get('consts'):
-                o['k'] = json.load(open(os.path.join(args.shaders, o['h'] + '.consts.json')))
+                o['k'] = json.loads(Path(args.shaders, o['h'] + '.consts.json').read_text())
             out.write(json.dumps(o, separators=(',', ':')) + '\n')
 
-    hashes = [json.loads(l)['h'] for l in open(reflection)]
+    hashes = [record['h'] for record in translated]
     for sdk in sdks:
         air = os.path.join(WORK, 'air-' + sdk)
         os.makedirs(air, exist_ok=True)
@@ -92,7 +97,9 @@ def main():
                     failed += 1
                     if failed <= 3:
                         print(str(e)[-3000:])
-        print('%s: compiled %d shaders in %d batches' % (sdk, len(stale), len(batches)))
+        print('%s: %s %d shader compilations in %d batches' % (sdk, 'attempted' if failed else 'completed', len(stale), len(batches)))
+        if failed:
+            sys.exit('%s: %d shader compile batches failed; refusing to link a partial library.' % (sdk, failed))
         files = os.path.join(WORK, 'air-' + sdk + '.txt')
         with open(files, 'w') as f:
             for h in hashes:

@@ -842,7 +842,7 @@ static void *boot(void *ignored) {
   snprintf(widthOption,sizeof widthOption,"-width=%d",configuredWidth);
   snprintf(heightOption,sizeof heightOption,"-height=%d",configuredHeight);
   snprintf(frameOption,sizeof frameOption,"-frameLimit=%d",benchmarkEnabled()?0:configuredFrameLimit);
-  const char *base[]={"playgta5","-rootdir=/game/","-wgpu","-nodisplaycalibration","-noSocialClub","-pc:nosocialclub","-nonetwork","-output",widthOption,heightOption,"-forceResolution","-fastscriptcore","-Script_all=warning","-replay_all=warning",frameOption,coresOption};
+  const char *base[]={"playgta5","-rootdir=/game/","-wgpu","-nodisplaycalibration","-nonetwork","-output",widthOption,heightOption,"-forceResolution","-fastscriptcore","-Script_all=warning","-replay_all=warning",frameOption,coresOption};
   const char *defaultQuality[]={"-shaderQuality=1","-textureQuality=0","-pedVariety=0","-vehicleVariety=0","-shadowQuality=-1","-reflectionQuality=0","-particleQuality=0","-grassQuality=0","-cityDensity=0","-lodScale=0","-pedLodBias=0","-vehicleLodBias=0"};
   const char *options[64];unsigned optionCount=0;
   for(unsigned i=0;i<sizeof base/sizeof *base;i++)options[optionCount++]=base[i];

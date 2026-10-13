@@ -9,4 +9,7 @@ app/Resources/manifest.json
 app/Resources/wgpu_worker.js
 app/*.xcodeproj
 *.ipa
+gta5-build-inputs*.zip
+uploaded-inputs/
+__pycache__/
 .DS_Store

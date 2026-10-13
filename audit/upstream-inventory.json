@@ -1,0 +1,1032 @@
+{
+  "commit": "151495ccc5d3c95ef8a6f9f7f92b0a98e6fabb49",
+  "files": [
+    {
+      "path": ".github/workflows/build-ipa.yml",
+      "bytes": 3985,
+      "lines": 102
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 206,
+      "lines": 12
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 4476,
+      "lines": 61
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1327,
+      "lines": 25
+    },
+    {
+      "path": "README.md",
+      "bytes": 14387,
+      "lines": 184
+    },
+    {
+      "path": "app/.gitignore",
+      "bytes": 108,
+      "lines": 8
+    },
+    {
+      "path": "app/App/AppDelegate.swift",
+      "bytes": 462,
+      "lines": 13
+    },
+    {
+      "path": "app/App/AssetPreloader.swift",
+      "bytes": 14493,
+      "lines": 315
+    },
+    {
+      "path": "app/App/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png",
+      "bytes": 671321,
+      "binary": true
+    },
+    {
+      "path": "app/App/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "bytes": 178,
+      "lines": 6
+    },
+    {
+      "path": "app/App/Assets.xcassets/Contents.json",
+      "bytes": 51,
+      "lines": 1
+    },
+    {
+      "path": "app/App/Assets.xcassets/HomeIcon.imageset/Contents.json",
+      "bytes": 230,
+      "lines": 7
+    },
+    {
+      "path": "app/App/Assets.xcassets/HomeIcon.imageset/HomeIcon@2x.png",
+      "bytes": 14551,
+      "binary": true
+    },
+    {
+      "path": "app/App/Assets.xcassets/HomeIcon.imageset/HomeIcon@3x.png",
+      "bytes": 30405,
+      "binary": true
+    },
+    {
+      "path": "app/App/Assets.xcassets/SettingsBackground.imageset/Contents.json",
+      "bytes": 202,
+      "lines": 7
+    },
+    {
+      "path": "app/App/Assets.xcassets/SettingsBackground.imageset/settings-bg-ipad.jpg",
+      "bytes": 26648,
+      "binary": true
+    },
+    {
+      "path": "app/App/Assets.xcassets/SettingsBackground.imageset/settings-bg-iphone.jpg",
+      "bytes": 30394,
+      "binary": true
+    },
+    {
+      "path": "app/App/Assets.xcassets/StartBackground.imageset/Contents.json",
+      "bytes": 196,
+      "lines": 7
+    },
+    {
+      "path": "app/App/Assets.xcassets/StartBackground.imageset/start-bg-ipad.jpg",
+      "bytes": 737377,
+      "binary": true
+    },
+    {
+      "path": "app/App/Assets.xcassets/StartBackground.imageset/start-bg-iphone.jpg",
+      "bytes": 705717,
+      "binary": true
+    },
+    {
+      "path": "app/App/ControlsLayout.swift",
+      "bytes": 12884,
+      "lines": 249
+    },
+    {
+      "path": "app/App/DownloadBrowserViewController.swift",
+      "bytes": 12122,
+      "lines": 188
+    },
+    {
+      "path": "app/App/Free.entitlements",
+      "bytes": 188,
+      "lines": 6
+    },
+    {
+      "path": "app/App/Full.entitlements",
+      "bytes": 335,
+      "lines": 10
+    },
+    {
+      "path": "app/App/GameFiles.swift",
+      "bytes": 9510,
+      "lines": 171
+    },
+    {
+      "path": "app/App/GameFilesViewController.swift",
+      "bytes": 28967,
+      "lines": 522
+    },
+    {
+      "path": "app/App/GameFolder.swift",
+      "bytes": 12696,
+      "lines": 210
+    },
+    {
+      "path": "app/App/GameInstall.swift",
+      "bytes": 8399,
+      "lines": 178
+    },
+    {
+      "path": "app/App/GameInstaller/GameInstaller.swift",
+      "bytes": 9083,
+      "lines": 180
+    },
+    {
+      "path": "app/App/GameInstaller/GameInstallerShim.c",
+      "bytes": 4980,
+      "lines": 128
+    },
+    {
+      "path": "app/App/GameInstaller/GameInstallerShim.h",
+      "bytes": 2655,
+      "lines": 62
+    },
+    {
+      "path": "app/App/GameInstaller/GameManifest.swift",
+      "bytes": 3998,
+      "lines": 87
+    },
+    {
+      "path": "app/App/GameInstaller/InstallJob.swift",
+      "bytes": 24968,
+      "lines": 465
+    },
+    {
+      "path": "app/App/GameInstaller/LocalSource.swift",
+      "bytes": 10100,
+      "lines": 223
+    },
+    {
+      "path": "app/App/GameInstaller/RemoteSource.swift",
+      "bytes": 22143,
+      "lines": 455
+    },
+    {
+      "path": "app/App/GameSettings.swift",
+      "bytes": 10062,
+      "lines": 201
+    },
+    {
+      "path": "app/App/GraphicsOptions.swift",
+      "bytes": 7336,
+      "lines": 122
+    },
+    {
+      "path": "app/App/GyroInput.swift",
+      "bytes": 4657,
+      "lines": 96
+    },
+    {
+      "path": "app/App/HomeView.swift",
+      "bytes": 15788,
+      "lines": 304
+    },
+    {
+      "path": "app/App/Info.plist",
+      "bytes": 1647,
+      "lines": 59
+    },
+    {
+      "path": "app/App/KeyboardMouse.swift",
+      "bytes": 6232,
+      "lines": 123
+    },
+    {
+      "path": "app/App/LogUploader.swift",
+      "bytes": 6434,
+      "lines": 108
+    },
+    {
+      "path": "app/App/NativePortViewController.swift",
+      "bytes": 55550,
+      "lines": 893
+    },
+    {
+      "path": "app/App/SettingsViewController.swift",
+      "bytes": 32527,
+      "lines": 561
+    },
+    {
+      "path": "app/App/Theme.swift",
+      "bytes": 8302,
+      "lines": 152
+    },
+    {
+      "path": "app/App/TouchControlsView.swift",
+      "bytes": 50505,
+      "lines": 975
+    },
+    {
+      "path": "app/App/VirtualPad.swift",
+      "bytes": 2964,
+      "lines": 56
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_aim.png",
+      "bytes": 11067,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_brake.png",
+      "bytes": 5889,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_camera.png",
+      "bytes": 13079,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_cover.png",
+      "bytes": 7685,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_enter_exit.png",
+      "bytes": 9591,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_fire.png",
+      "bytes": 6473,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_gas.png",
+      "bytes": 6777,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_gyro.png",
+      "bytes": 12355,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_handbrake.png",
+      "bytes": 5691,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_horn.png",
+      "bytes": 8181,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_jump.png",
+      "bytes": 7887,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_landing_gear.png",
+      "bytes": 8138,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_lights.png",
+      "bytes": 5322,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_look.png",
+      "bytes": 12565,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_pause.png",
+      "bytes": 3781,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_phone.png",
+      "bytes": 4500,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_reload.png",
+      "bytes": 13763,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_settings.png",
+      "bytes": 8405,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_special.png",
+      "bytes": 8246,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_sprint.png",
+      "bytes": 9778,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_vehicle_weapon.png",
+      "bytes": 10017,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/ControlIcons/icon_weapons.png",
+      "bytes": 12367,
+      "binary": true
+    },
+    {
+      "path": "app/Resources/bootset_low.json",
+      "bytes": 190351,
+      "lines": 1
+    },
+    {
+      "path": "app/Resources/bootset_native.json",
+      "bytes": 189413,
+      "lines": 1
+    },
+    {
+      "path": "app/Resources/bootset_native.summary.json",
+      "bytes": 509,
+      "lines": 13
+    },
+    {
+      "path": "app/Scripts/analyze_streaming.py",
+      "bytes": 3523,
+      "lines": 53
+    },
+    {
+      "path": "app/Scripts/analyze_texture_streaming.py",
+      "bytes": 3611,
+      "lines": 47
+    },
+    {
+      "path": "app/Scripts/assemble_inputs.py",
+      "bytes": 1984,
+      "lines": 44
+    },
+    {
+      "path": "app/Scripts/build_metal_shaders.py",
+      "bytes": 5348,
+      "lines": 106
+    },
+    {
+      "path": "app/Scripts/build_native.sh",
+      "bytes": 734,
+      "lines": 16
+    },
+    {
+      "path": "app/Scripts/build_simulator.sh",
+      "bytes": 790,
+      "lines": 16
+    },
+    {
+      "path": "app/Scripts/check_asset_pipeline.sh",
+      "bytes": 305,
+      "lines": 7
+    },
+    {
+      "path": "app/Scripts/check_game_files.py",
+      "bytes": 1498,
+      "lines": 36
+    },
+    {
+      "path": "app/Scripts/check_runtime.sh",
+      "bytes": 802,
+      "lines": 13
+    },
+    {
+      "path": "app/Scripts/create_native_bootset.py",
+      "bytes": 4838,
+      "lines": 98
+    },
+    {
+      "path": "app/Scripts/fetch_game_files.py",
+      "bytes": 2311,
+      "lines": 52
+    },
+    {
+      "path": "app/Scripts/fetch_shader_tool.py",
+      "bytes": 1620,
+      "lines": 36
+    },
+    {
+      "path": "app/Scripts/generate_imports.py",
+      "bytes": 2603,
+      "lines": 43
+    },
+    {
+      "path": "app/Scripts/patch_wasm2c.py",
+      "bytes": 1624,
+      "lines": 34
+    },
+    {
+      "path": "app/Scripts/prepare.py",
+      "bytes": 5096,
+      "lines": 95
+    },
+    {
+      "path": "app/Scripts/prepare_heap_diagnostics.py",
+      "bytes": 969,
+      "lines": 17
+    },
+    {
+      "path": "app/Scripts/prepare_memory_pressure.py",
+      "bytes": 2058,
+      "lines": 42
+    },
+    {
+      "path": "app/Scripts/prepare_missing_txd.py",
+      "bytes": 2342,
+      "lines": 41
+    },
+    {
+      "path": "app/Scripts/prepare_movie_wait.py",
+      "bytes": 2545,
+      "lines": 48
+    },
+    {
+      "path": "app/Scripts/prepare_unchecked_memory.py",
+      "bytes": 1850,
+      "lines": 36
+    },
+    {
+      "path": "app/Scripts/prepare_virtual_pad.py",
+      "bytes": 1366,
+      "lines": 28
+    },
+    {
+      "path": "app/Scripts/reset_streaming_cache.py",
+      "bytes": 1898,
+      "lines": 37
+    },
+    {
+      "path": "app/Scripts/run_simulator.sh",
+      "bytes": 594,
+      "lines": 9
+    },
+    {
+      "path": "app/Scripts/safe_extract.py",
+      "bytes": 844,
+      "lines": 19
+    },
+    {
+      "path": "app/Scripts/sha256_shim.c",
+      "bytes": 643,
+      "lines": 19
+    },
+    {
+      "path": "app/Scripts/unpack_shaders.py",
+      "bytes": 1527,
+      "lines": 36
+    },
+    {
+      "path": "app/ShaderTool/build_pgmsl.sh",
+      "bytes": 1078,
+      "lines": 14
+    },
+    {
+      "path": "app/ShaderTool/pgmsl.cc",
+      "bytes": 10663,
+      "lines": 208
+    },
+    {
+      "path": "app/Source/BCTextureDecoder.c",
+      "bytes": 3205,
+      "lines": 60
+    },
+    {
+      "path": "app/Source/BCTextureDecoder.h",
+      "bytes": 549,
+      "lines": 12
+    },
+    {
+      "path": "app/Source/BCTextureDecoderReference.inc",
+      "bytes": 1944,
+      "lines": 20
+    },
+    {
+      "path": "app/Source/EngineHost.c",
+      "bytes": 50894,
+      "lines": 915
+    },
+    {
+      "path": "app/Source/EngineHost.h",
+      "bytes": 4923,
+      "lines": 89
+    },
+    {
+      "path": "app/Source/HostInternal.h",
+      "bytes": 697,
+      "lines": 22
+    },
+    {
+      "path": "app/Source/MetalGraphicsHost.mm",
+      "bytes": 730,
+      "lines": 13
+    },
+    {
+      "path": "app/Source/MetalRenderer/MRFrameReports.h",
+      "bytes": 435,
+      "lines": 10
+    },
+    {
+      "path": "app/Source/MetalRenderer/MRFrameReports.mm",
+      "bytes": 5859,
+      "lines": 94
+    },
+    {
+      "path": "app/Source/MetalRenderer/MRInternal.h",
+      "bytes": 6990,
+      "lines": 165
+    },
+    {
+      "path": "app/Source/MetalRenderer/MRRenderer.mm",
+      "bytes": 115496,
+      "lines": 2170
+    },
+    {
+      "path": "app/Source/MetalRenderer/MRShaders.mm",
+      "bytes": 12877,
+      "lines": 268
+    },
+    {
+      "path": "app/Source/MetalRenderer/MetalRenderer.h",
+      "bytes": 490,
+      "lines": 15
+    },
+    {
+      "path": "app/Source/Native-Bridging-Header.h",
+      "bytes": 116,
+      "lines": 5
+    },
+    {
+      "path": "app/Source/NativeARM64Memory.h",
+      "bytes": 1182,
+      "lines": 27
+    },
+    {
+      "path": "app/Source/NativeAssetHints.h",
+      "bytes": 1604,
+      "lines": 27
+    },
+    {
+      "path": "app/Source/NativeAssetPreload.h",
+      "bytes": 2173,
+      "lines": 44
+    },
+    {
+      "path": "app/Source/NativeAssetServer.h",
+      "bytes": 243,
+      "lines": 12
+    },
+    {
+      "path": "app/Source/NativeAssets.m",
+      "bytes": 46096,
+      "lines": 661
+    },
+    {
+      "path": "app/Source/NativeControllerLook.h",
+      "bytes": 1428,
+      "lines": 34
+    },
+    {
+      "path": "app/Source/NativeEngineConfiguration.h",
+      "bytes": 446,
+      "lines": 12
+    },
+    {
+      "path": "app/Source/NativeFiles.c",
+      "bytes": 10649,
+      "lines": 154
+    },
+    {
+      "path": "app/Source/NativeFrameMetrics.h",
+      "bytes": 1904,
+      "lines": 37
+    },
+    {
+      "path": "app/Source/NativeFrameRate.h",
+      "bytes": 456,
+      "lines": 15
+    },
+    {
+      "path": "app/Source/NativeGraphics.h",
+      "bytes": 326,
+      "lines": 12
+    },
+    {
+      "path": "app/Source/NativeMemoryBudget.h",
+      "bytes": 1058,
+      "lines": 21
+    },
+    {
+      "path": "app/Source/NativePackedAssetCache.h",
+      "bytes": 7084,
+      "lines": 120
+    },
+    {
+      "path": "app/Source/NativeProxy.c",
+      "bytes": 5832,
+      "lines": 46
+    },
+    {
+      "path": "app/Source/NativeRingPackets.h",
+      "bytes": 2685,
+      "lines": 56
+    },
+    {
+      "path": "app/Source/NativeRuntime.h",
+      "bytes": 47,
+      "lines": 2
+    },
+    {
+      "path": "app/Source/NativeThreads.c",
+      "bytes": 5363,
+      "lines": 83
+    },
+    {
+      "path": "app/Source/NativeTouchContext.h",
+      "bytes": 1981,
+      "lines": 32
+    },
+    {
+      "path": "app/Source/SharedSIMD.h",
+      "bytes": 2466,
+      "lines": 53
+    },
+    {
+      "path": "app/Source/WasmFutex.c",
+      "bytes": 3688,
+      "lines": 100
+    },
+    {
+      "path": "app/Source/WasmFutex.h",
+      "bytes": 297,
+      "lines": 7
+    },
+    {
+      "path": "app/Tests/WarmDispatchHarness.inc",
+      "bytes": 2756,
+      "lines": 53
+    },
+    {
+      "path": "app/Tests/arm_shared_simd.c",
+      "bytes": 2128,
+      "lines": 47
+    },
+    {
+      "path": "app/Tests/asset_hints.c",
+      "bytes": 1382,
+      "lines": 19
+    },
+    {
+      "path": "app/Tests/asset_pipeline.m",
+      "bytes": 11487,
+      "lines": 126
+    },
+    {
+      "path": "app/Tests/bc_textures.c",
+      "bytes": 3638,
+      "lines": 59
+    },
+    {
+      "path": "app/Tests/controller_look.c",
+      "bytes": 1442,
+      "lines": 41
+    },
+    {
+      "path": "app/Tests/engine_configuration.c",
+      "bytes": 754,
+      "lines": 16
+    },
+    {
+      "path": "app/Tests/frame_metrics.cpp",
+      "bytes": 1749,
+      "lines": 16
+    },
+    {
+      "path": "app/Tests/frame_rate.cpp",
+      "bytes": 560,
+      "lines": 14
+    },
+    {
+      "path": "app/Tests/frame_reports.mm",
+      "bytes": 2823,
+      "lines": 30
+    },
+    {
+      "path": "app/Tests/memory_budget.c",
+      "bytes": 1229,
+      "lines": 22
+    },
+    {
+      "path": "app/Tests/metal_buffer_cache.cpp",
+      "bytes": 1339,
+      "lines": 26
+    },
+    {
+      "path": "app/Tests/native_runtime.c",
+      "bytes": 2825,
+      "lines": 76
+    },
+    {
+      "path": "app/Tests/native_uniform_resolver.mm",
+      "bytes": 16261,
+      "lines": 192
+    },
+    {
+      "path": "app/Tests/packed_asset_cache.c",
+      "bytes": 3962,
+      "lines": 46
+    },
+    {
+      "path": "app/Tests/prepared_draws.mm",
+      "bytes": 8547,
+      "lines": 96
+    },
+    {
+      "path": "app/Tests/ring_packets.cpp",
+      "bytes": 3464,
+      "lines": 35
+    },
+    {
+      "path": "app/Tests/state_packing.mm",
+      "bytes": 1933,
+      "lines": 32
+    },
+    {
+      "path": "app/Tests/texture_rows.mm",
+      "bytes": 5205,
+      "lines": 50
+    },
+    {
+      "path": "app/Tests/texture_views.mm",
+      "bytes": 1580,
+      "lines": 20
+    },
+    {
+      "path": "app/Tests/threads64.wat",
+      "bytes": 608,
+      "lines": 12
+    },
+    {
+      "path": "app/Tests/warm_dispatch.mm",
+      "bytes": 5962,
+      "lines": 49
+    },
+    {
+      "path": "app/Tests/warm_javascript.mm",
+      "bytes": 6767,
+      "lines": 53
+    },
+    {
+      "path": "app/Vendor/LICENSE-libarchive.txt",
+      "bytes": 3089,
+      "lines": 65
+    },
+    {
+      "path": "app/Vendor/libarchive.xcframework/Info.plist",
+      "bytes": 1620,
+      "lines": 63
+    },
+    {
+      "path": "app/Vendor/libarchive.xcframework/LICENSE-libarchive.txt",
+      "bytes": 3089,
+      "lines": 65
+    },
+    {
+      "path": "app/Vendor/libarchive.xcframework/ios-arm64-simulator/Headers/archive.h",
+      "bytes": 56071,
+      "lines": 1266
+    },
+    {
+      "path": "app/Vendor/libarchive.xcframework/ios-arm64-simulator/Headers/archive_entry.h",
+      "bytes": 35427,
+      "lines": 763
+    },
+    {
+      "path": "app/Vendor/libarchive.xcframework/ios-arm64-simulator/libarchive.a",
+      "bytes": 403496,
+      "binary": true
+    },
+    {
+      "path": "app/Vendor/libarchive.xcframework/ios-arm64/Headers/archive.h",
+      "bytes": 56071,
+      "lines": 1266
+    },
+    {
+      "path": "app/Vendor/libarchive.xcframework/ios-arm64/Headers/archive_entry.h",
+      "bytes": 35427,
+      "lines": 763
+    },
+    {
+      "path": "app/Vendor/libarchive.xcframework/ios-arm64/libarchive.a",
+      "bytes": 401832,
+      "binary": true
+    },
+    {
+      "path": "app/Vendor/libarchive.xcframework/macos-arm64/Headers/archive.h",
+      "bytes": 56071,
+      "lines": 1266
+    },
+    {
+      "path": "app/Vendor/libarchive.xcframework/macos-arm64/Headers/archive_entry.h",
+      "bytes": 35427,
+      "lines": 763
+    },
+    {
+      "path": "app/Vendor/libarchive.xcframework/macos-arm64/libarchive.a",
+      "bytes": 404512,
+      "binary": true
+    },
+    {
+      "path": "app/project.yml",
+      "bytes": 4107,
+      "lines": 114
+    },
+    {
+      "path": "build_ipa.sh",
+      "bytes": 2592,
+      "lines": 47
+    },
+    {
+      "path": "docs/video-thumbnail.jpg",
+      "bytes": 63930,
+      "binary": true
+    }
+  ],
+  "unresolved_local_includes": [
+    {
+      "source": "app/ShaderTool/pgmsl.cc",
+      "include": "src/tint/api/tint.h"
+    },
+    {
+      "source": "app/ShaderTool/pgmsl.cc",
+      "include": "src/tint/lang/msl/writer/writer.h"
+    },
+    {
+      "source": "app/ShaderTool/pgmsl.cc",
+      "include": "src/tint/lang/wgsl/inspector/inspector.h"
+    },
+    {
+      "source": "app/ShaderTool/pgmsl.cc",
+      "include": "src/tint/lang/wgsl/reader/reader.h"
+    },
+    {
+      "source": "app/ShaderTool/pgmsl.cc",
+      "include": "src/tint/lang/wgsl/reader/options.h"
+    },
+    {
+      "source": "app/ShaderTool/pgmsl.cc",
+      "include": "src/tint/utils/diagnostic/source.h"
+    },
+    {
+      "source": "app/Source/BCTextureDecoder.c",
+      "include": "../Tools/bcdec/bcdec.h"
+    },
+    {
+      "source": "app/Source/EngineHost.c",
+      "include": "wasm-rt-impl.h"
+    },
+    {
+      "source": "app/Source/HostInternal.h",
+      "include": "game.h"
+    },
+    {
+      "source": "app/Source/HostInternal.h",
+      "include": "wasm-rt-exceptions.h"
+    },
+    {
+      "source": "app/Source/Native-Bridging-Header.h",
+      "include": "GameInstallerShim.h"
+    },
+    {
+      "source": "app/Source/NativeAssets.m",
+      "include": "wasm-rt-impl.h"
+    },
+    {
+      "source": "app/Source/NativeThreads.c",
+      "include": "wasm-rt-impl.h"
+    },
+    {
+      "source": "app/Source/SharedSIMD.h",
+      "include": "wasm-rt.h"
+    },
+    {
+      "source": "app/Source/WasmFutex.h",
+      "include": "wasm-rt.h"
+    },
+    {
+      "source": "app/Tests/WarmDispatchHarness.inc",
+      "include": "webgpu.h"
+    },
+    {
+      "source": "app/Tests/WarmDispatchHarness.inc",
+      "include": "NativeUniforms.inc"
+    },
+    {
+      "source": "app/Tests/WarmDispatchHarness.inc",
+      "include": "NativePipelineCache.inc"
+    },
+    {
+      "source": "app/Tests/WarmDispatchHarness.inc",
+      "include": "NativePreparedDraws.inc"
+    },
+    {
+      "source": "app/Tests/WarmDispatchHarness.inc",
+      "include": "NativeWarmDispatch.inc"
+    },
+    {
+      "source": "app/Tests/asset_pipeline.m",
+      "include": "wasm-rt-impl.h"
+    },
+    {
+      "source": "app/Tests/frame_reports.mm",
+      "include": "../Source/NativeFrameReports.inc"
+    },
+    {
+      "source": "app/Tests/metal_buffer_cache.cpp",
+      "include": "PlayGTA5MetalBufferCache.h"
+    },
+    {
+      "source": "app/Tests/native_runtime.c",
+      "include": "probe.h"
+    },
+    {
+      "source": "app/Tests/native_runtime.c",
+      "include": "wasm-rt-impl.h"
+    },
+    {
+      "source": "app/Tests/native_runtime.c",
+      "include": "wasm-rt-exceptions.h"
+    },
+    {
+      "source": "app/Tests/native_uniform_resolver.mm",
+      "include": "webgpu.h"
+    },
+    {
+      "source": "app/Tests/native_uniform_resolver.mm",
+      "include": "NativeUniforms.inc"
+    },
+    {
+      "source": "app/Tests/prepared_draws.mm",
+      "include": "webgpu.h"
+    },
+    {
+      "source": "app/Tests/prepared_draws.mm",
+      "include": "NativeUniforms.inc"
+    },
+    {
+      "source": "app/Tests/prepared_draws.mm",
+      "include": "NativePipelineCache.inc"
+    },
+    {
+      "source": "app/Tests/prepared_draws.mm",
+      "include": "NativePreparedDraws.inc"
+    },
+    {
+      "source": "app/Tests/texture_rows.mm",
+      "include": "../Source/NativeTextureRows.h"
+    },
+    {
+      "source": "app/Tests/texture_views.mm",
+      "include": "../Source/NativeTextureView.h"
+    },
+    {
+      "source": "app/Vendor/libarchive.xcframework/ios-arm64-simulator/Headers/archive.h",
+      "include": "android_lf.h"
+    },
+    {
+      "source": "app/Vendor/libarchive.xcframework/ios-arm64-simulator/Headers/archive_entry.h",
+      "include": "android_lf.h"
+    },
+    {
+      "source": "app/Vendor/libarchive.xcframework/ios-arm64/Headers/archive.h",
+      "include": "android_lf.h"
+    },
+    {
+      "source": "app/Vendor/libarchive.xcframework/ios-arm64/Headers/archive_entry.h",
+      "include": "android_lf.h"
+    },
+    {
+      "source": "app/Vendor/libarchive.xcframework/macos-arm64/Headers/archive.h",
+      "include": "android_lf.h"
+    },
+    {
+      "source": "app/Vendor/libarchive.xcframework/macos-arm64/Headers/archive_entry.h",
+      "include": "android_lf.h"
+    }
+  ]
+}

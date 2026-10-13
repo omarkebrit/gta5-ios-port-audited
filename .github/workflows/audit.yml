@@ -1,0 +1,45 @@
+name: Asset-free source checks
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['app/**', 'tools/**', '.github/workflows/audit.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: macos-15
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.11'
+      - name: Record actual runner and Xcode
+        run: |
+          test "$(uname -m)" = arm64
+          mkdir -p app/Build/Audit
+          { uname -a; xcodebuild -version; python3 --version; } > app/Build/Audit/environment.log
+      - name: Prepare open-source test tools (no game files)
+        run: python3 app/Scripts/prepare_test_tools.py
+      - name: Run checked-in tests and report blocked legacy tests
+        run: python3 app/Scripts/run_tests.py
+      - name: Run build pipeline regression tests
+        if: ${{ !cancelled() }}
+        run: python3 -m unittest discover -s app/Tests -p 'test_*.py' -v 2>&1 | tee app/Build/Audit/pipeline-tests.log
+      - name: Check renderer, installer C and all Swift against the iOS SDK
+        if: ${{ !cancelled() }}
+        run: bash app/Scripts/check_ios_sources.sh
+      - name: Publish test evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: source-check-evidence
+          path: |
+            app/Build/Audit/*.log
+            app/Build/Audit/*.json
+          if-no-files-found: warn
+          retention-days: 7

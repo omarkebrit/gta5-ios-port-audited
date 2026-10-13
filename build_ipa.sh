@@ -12,6 +12,10 @@ if [ "${1:-}" = "--mirror" ]; then MIRROR="$(cd "${2:?Usage: ./build_ipa.sh --mi
 else SERVER="${1:?Usage: ./build_ipa.sh https://your-server [--paid]  or  ./build_ipa.sh --mirror /path [--paid]}"; shift; fi
 ENTITLEMENTS=App/Free.entitlements
 [ "${1:-}" = "--paid" ] && ENTITLEMENTS=App/Full.entitlements
+if [ "$(uname -s)" != Darwin ] || [ "$(sysctl -n hw.optional.arm64 2>/dev/null || true)" != 1 ]; then
+  echo 'This build requires an Apple Silicon macOS host with Xcode. Use the prepared GitHub Actions workflow from Windows.'
+  exit 1
+fi
 cd "$(dirname "$0")/app"
 JOBS="${JOBS:-$(sysctl -n hw.ncpu)}"
 # The system Python runs natively on Apple Silicon (a Rosetta Python would
@@ -32,7 +36,7 @@ xcodebuild -project PlayGTA5Native.xcodeproj -scheme PlayGTA5Native \
   -derivedDataPath Build/Release -jobs "$JOBS" \
   GCC_OPTIMIZATION_LEVEL=2 SWIFT_OPTIMIZATION_LEVEL=-O DEBUG_INFORMATION_FORMAT=dwarf \
   CODE_SIGNING_ALLOWED=NO CODE_SIGN_ENTITLEMENTS="$ENTITLEMENTS" build > Build/xcodebuild.log 2>&1 || {
-  grep -E 'error:' Build/xcodebuild.log | head -20
+  grep -E 'error:' Build/xcodebuild.log | sed -n '1,20p' || true
   echo "Build failed; the full log is app/Build/xcodebuild.log"; exit 1; }
 grep -E 'BUILD SUCCEEDED' Build/xcodebuild.log
 
@@ -41,6 +45,8 @@ APP=Build/Release/Build/Products/Release-iphoneos/PlayGTA5Native.app
 # entitlements tells them what to request.
 codesign --force --sign - --entitlements "$ENTITLEMENTS" --generate-entitlement-der "$APP"
 STAGE=Build/IPA
+rm -rf "$STAGE"
+rm -f ../GTA5Port.ipa
 mkdir -p "$STAGE/Payload"
 ditto "$APP" "$STAGE/Payload/PlayGTA5Native.app"
 (cd "$STAGE" && zip -qry ../../../GTA5Port.ipa Payload)
