@@ -1,0 +1,50 @@
+{
+  "observed_date": "2026-10-14",
+  "repository": {
+    "full_name": "omarkebrit/gta5-ios-port-audited",
+    "html_url": "https://github.com/omarkebrit/gta5-ios-port-audited",
+    "permissions": {
+      "admin": true,
+      "maintain": true,
+      "pull": true,
+      "push": true,
+      "triage": true
+    },
+    "private": true,
+    "visibility": "private"
+  },
+  "run": {
+    "id": 38542594399,
+    "event": "push",
+    "status": "completed",
+    "conclusion": "failure",
+    "head_sha": "8948c1608cb37d5631341260214cbf5a75257250",
+    "html_url": "https://github.com/omarkebrit/gta5-ios-port-audited/actions/runs/38542594399",
+    "created_at": "2026-10-14T09:28:25Z",
+    "updated_at": "2026-10-14T09:28:31Z"
+  },
+  "jobs": [
+    {
+      "id": 115780757833,
+      "name": "checks",
+      "status": "completed",
+      "conclusion": "failure",
+      "steps": [],
+      "runner_name": ""
+    }
+  ],
+  "annotations": [
+    {
+      "annotation_level": "failure",
+      "title": "",
+      "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+    },
+    {
+      "annotation_level": "notice",
+      "title": "",
+      "message": "Due to capacity constraints, jobs targeting macOS arm64 runners may experience longer queue times."
+    }
+  ],
+  "ipa_produced": false,
+  "macos_steps_executed": false
+}

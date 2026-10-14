@@ -5,6 +5,14 @@ Audited upstream commit: `151495ccc5d3c95ef8a6f9f7f92b0a98e6fabb49`.
 
 **No working, installable IPA has been verified or published.** This is a plausible native host implementation for a particular supplied Wasm engine, rather than a self-contained port of retail GTA V. There is insufficient evidence to label it fraudulent, and insufficient evidence to certify the full game functional. Its runtime dependencies, provenance and performance claims cannot be verified from this source repository alone.
 
+## Follow-up status on 2026-10-14
+
+The user created `omarkebrit/gta5-ios-port-audited` and changed it from public to private. The connection verified `private: true` and push access, and successfully published the prepared source/workflows at commit `8948c1608cb37d5631341260214cbf5a75257250`. Repository: <https://github.com/omarkebrit/gta5-ios-port-audited>. Source checks: <https://github.com/omarkebrit/gta5-ios-port-audited/actions/workflows/audit.yml>. IPA build: <https://github.com/omarkebrit/gta5-ios-port-audited/actions/workflows/build-ipa.yml>.
+
+The push created run [38542594399](https://github.com/omarkebrit/gta5-ios-port-audited/actions/runs/38542594399). It failed before allocating/executing the macOS job: the job has an empty step list and GitHub's check annotation states “The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings”. A separate notice mentions ARM64 runner capacity, but the billing annotation is the explicit startup failure. No compilation, macOS test or IPA verification executed. Account billing resolution requires the user; no payment/budget changes were made. The proprietary game inputs remain absent. See [github-status-2026-10-14.json](github-status-2026-10-14.json).
+
+Static follow-up review also corrected two check-harness defects: explicitly select Bash so a failing Python test piped through `tee` fails the step, and compile the ARM64 SIMD comparison with `PG_SHARED_SIMD_BYTEWISE` so the reference path uses atomic bytes independently of the direct ARM64 helper. The latter has not executed on ARM64 yet. The original 2026-10-13 evidence below is retained as the historical audit; its repository-publication blocker is now resolved, and its unexecuted-macOS limitation remains.
+
 ## Scope and evidence
 
 The repository was cloned with its full Git history. The upstream tree has 173 tracked files, including 140 readable text files (21,781 lines, including vendored headers), Swift app/UI and archive installer code, C engine/thread/file bridges, the Objective-C++ Metal renderer, 21 standalone test programs, Python/shell build and preparation scripts, resource metadata/images, three libarchive static library slices, licenses, README, changelog and the single upstream workflow. There are no submodules. The file inventory and unresolved include scan are in [upstream-inventory.json](upstream-inventory.json).
@@ -81,9 +89,9 @@ The IPA verifier is only a packaging gate: ZIP CRC, payload/Info.plist, ARM64 Ma
 
 ## What remains to complete the requested delivery
 
-1. User creates an empty private repository and grants the connection access, or runs the documented Windows publisher with their own GitHub CLI authorization. The existing integration denied both repository creation APIs with “Resource not accessible by integration”; no hosted repo/workflow is claimed published.
+1. Source publication is complete in the confirmed private repository. Resolve the account-level Actions billing startup restriction, then retry the source-check workflow. The original repository creation/visibility permission errors were resolved through user action.
 2. User supplies the exact WebAssembly engine, indexed shader packs and matching manifest through the Windows uploader, only if authorized to use them. No lawful source/conversion was established by this audit.
-3. The assistant can then run the real macOS workflows, inspect failures, fix reproducible issues, verify any actual IPA and provide confirmed run/artifact links. If permissions remain unavailable, the workflows are prepared for the user's own GitHub login but cannot be operated autonomously here.
+3. After the account restriction and game-input requirement are resolved, the assistant can run the real macOS workflows, inspect failures, fix reproducible issues, verify any actual IPA and provide confirmed artifact links. The currently linked run is a startup failure, not a successful build.
 4. User completes Apple ID signing on Windows/iPhone and tests real installation/boot on their iPhone 16 Pro Max. No Apple credentials need to be given to the assistant.
 
 Detailed file requirements, Windows commands, AltStore instructions and direct-to-iPhone transfer are in [README-AUDITED.md](../README-AUDITED.md).

@@ -1,6 +1,6 @@
 # Audited Windows build preparation
 
-**Status on 2026-10-13: no verified IPA has been produced.** The upstream source is preserved, a private build workflow is prepared, and local tests have run. GitHub denied repository creation, this execution host is Linux without Xcode, and the required proprietary WebAssembly engine/shaders/manifest were not supplied. The macOS workflows have not run. See [audit/REPORT.md](audit/REPORT.md) for evidence and limitations.
+**Status on 2026-10-14: no verified IPA has been produced.** Source and build workflows are now published in the user's [private repository](https://github.com/omarkebrit/gta5-ios-port-audited). GitHub accepted the push and created a [source-check run](https://github.com/omarkebrit/gta5-ios-port-audited/actions/runs/38542594399), but refused to start the macOS job because recent account payments have failed or the spending limit needs to be increased. No macOS test or compilation step executed. The required proprietary WebAssembly engine/shaders/manifest are also absent. See [audit/REPORT.md](audit/REPORT.md) for evidence and limitations.
 
 This project requires a specific pre-existing WebAssembly build. A normal Steam, Epic or Rockstar GTA V installation is insufficient. The repository provides neither the engine nor a conversion from a retail PC executable. Owning the PC game does not establish permission to obtain or use a third-party WebAssembly redistribution. Supply only files you are authorized to use; no game download sources are provided here.
 
@@ -19,15 +19,15 @@ The upstream describes 18 shader packs and about 85 MB total upload. Those count
 
 For play on the iPhone, supply **every runtime file named by `data/manifest.json` → `files[][0]` under `data/`, at the listed size**, preserving relative paths. The engine and shaders are compiled into the IPA; the full runtime data stays off GitHub. The exact hashed pack names and runtime file list are determined by your verified index and manifest, which are absent from this repository.
 
-## Unavoidable account setup
+## Current account blocker
 
-Create an **empty private** repository named `gta5-ios-port-audited` in your `omarkebrit` account at <https://github.com/new>. Do not initialize it with README, license or gitignore. Give the ChatGPT GitHub connection access to the repository if it uses selected repositories, then send its URL so the assistant can try publishing and running the prepared checks.
+The repository is now private and writable through the connection; source publication is complete. The prepared workflows are [Asset-free source checks](https://github.com/omarkebrit/gta5-ios-port-audited/actions/workflows/audit.yml) and [Build my IPA](https://github.com/omarkebrit/gta5-ios-port-audited/actions/workflows/build-ipa.yml).
 
-The current integration authenticated as `omarkebrit`, but both GraphQL `createRepository` and REST `POST /user/repos` were denied. A GitHub account being connected does not grant every operation. No private repository or workflow URL is claimed to exist yet.
+GitHub's exact job annotation is: “The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings”. Inspect [your account billing settings](https://github.com/settings/billing). This message does not identify which condition applies; no credit card, charge, spending increase or payment change was made by the assistant. Account payment/budget resolution requires the account owner. After resolving the account restriction, the assistant can retry the source checks; actual IPA compilation still requires the game inputs. Earlier repository-creation/visibility permission errors have been superseded by the user creating and making the repository private.
 
 ## Windows fallback if connection permissions remain insufficient
 
-Use the source ZIP supplied with this report. Extract it to a folder that does not contain your game data. Install Git, GitHub CLI and Python 3.11; these Windows commands are one route:
+Source publication is already complete; do not run the empty-repository publisher again. The following publisher instructions are retained for a fresh destination if needed. For uploading your own authorized game inputs, clone the published private repository or use the supplied source ZIP, keeping your game data outside that source folder. Install Git, GitHub CLI and Python 3.11; these Windows commands are one route:
 
 ```powershell
 winget install --id Git.Git --exact

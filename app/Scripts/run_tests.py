@@ -64,7 +64,7 @@ def main():
                     if name == 'controller_look':
                         command += ['-lm']
                     if name == 'arm_shared_simd':
-                        command += ['-I', 'Tools/wabt-1.0.42/include', '-I', 'Tools/simde']
+                        command += ['-DPG_SHARED_SIMD_BYTEWISE', '-I', 'Tools/wabt-1.0.42/include', '-I', 'Tools/simde']
                     status = execute(command, log)
                     if status == 0:
                         status = execute([str(binary)], log)
