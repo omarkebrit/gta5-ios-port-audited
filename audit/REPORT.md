@@ -5,6 +5,16 @@ Audited upstream commit: `151495ccc5d3c95ef8a6f9f7f92b0a98e6fabb49`.
 
 **No working, installable IPA has been verified or published.** This is a plausible native host implementation for a particular supplied Wasm engine, rather than a self-contained port of retail GTA V. There is insufficient evidence to label it fraudulent, and insufficient evidence to certify the full game functional. Its runtime dependencies, provenance and performance claims cannot be verified from this source repository alone.
 
+## Public macOS source-check result on 2026-10-14
+
+At the user's request, the repository was made public; GitHub confirmed the visibility change before retrying checks. No proprietary engine/data files, generated game shader library, signing material or embedded credentials were found in the tracked source or reachable history; no input release or IPA artifact existed. The original full IPA workflow's private-repository guard remains intact, and its Windows uploader refuses a public destination.
+
+The public retry, [run 38543383301](https://github.com/omarkebrit/gta5-ios-port-audited/actions/runs/38543383301), **succeeded** at commit `d2b944172445d3fe2281483b7eea4caa718e196a`. Dependency preparation ran on the ARM64 macOS runner, **11 existing tests passed**, **10 existing tests were explicitly blocked**, and **four pipeline regression tests passed**. The native Metal bridge, all three renderer implementation files, archive installer C shim and all Swift app sources passed the current iOS SDK syntax/type checks. The native-runtime test translates the checked-in synthetic WAT probe; it does not execute the actual GTA engine. See [github-public-source-checks-2026-10-14.json](github-public-source-checks-2026-10-14.json).
+
+The job log was obtained through the GitHub connector and confirms these results. The evidence artifact was published by GitHub, but a CLI artifact download followed a redirect that returned HTTP 403; this audit does not claim that ZIP was downloaded locally. The public job ran without changing payments or spending limits; this does not establish that private macOS jobs now work. The earlier private failure below is retained as historical evidence.
+
+The user now reports having `b/8b0b5899ed/game.wasm` on their computer. That file has **not** been supplied or hash-verified, and the shader packs/manifest have not been supplied. No actual engine translation, full app compilation/link, IPA packaging, device installation or gameplay test occurred. A protected input/artifact transport is required before using the proprietary inputs; the existing full-build workflow cannot be dispatched in this public repository.
+
 ## Follow-up status on 2026-10-14
 
 The user created `omarkebrit/gta5-ios-port-audited` and changed it from public to private. The connection verified `private: true` and push access, and successfully published the prepared source/workflows at commit `8948c1608cb37d5631341260214cbf5a75257250`. Repository: <https://github.com/omarkebrit/gta5-ios-port-audited>. Source checks: <https://github.com/omarkebrit/gta5-ios-port-audited/actions/workflows/audit.yml>. IPA build: <https://github.com/omarkebrit/gta5-ios-port-audited/actions/workflows/build-ipa.yml>.
@@ -89,7 +99,7 @@ The IPA verifier is only a packaging gate: ZIP CRC, payload/Info.plist, ARM64 Ma
 
 ## What remains to complete the requested delivery
 
-1. Source publication is complete in the confirmed private repository. Resolve the account-level Actions billing startup restriction, then retry the source-check workflow. The original repository creation/visibility permission errors were resolved through user action.
+1. Source publication and public macOS source checks are complete. The full IPA workflow still requires a protected input/output route and currently enforces a private destination; the public source run does not resolve private Actions billing.
 2. User supplies the exact WebAssembly engine, indexed shader packs and matching manifest through the Windows uploader, only if authorized to use them. No lawful source/conversion was established by this audit.
 3. After the account restriction and game-input requirement are resolved, the assistant can run the real macOS workflows, inspect failures, fix reproducible issues, verify any actual IPA and provide confirmed artifact links. The currently linked run is a startup failure, not a successful build.
 4. User completes Apple ID signing on Windows/iPhone and tests real installation/boot on their iPhone 16 Pro Max. No Apple credentials need to be given to the assistant.

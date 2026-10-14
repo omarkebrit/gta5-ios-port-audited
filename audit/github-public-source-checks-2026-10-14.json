@@ -1,0 +1,55 @@
+{
+  "observed_date": "2026-10-14",
+  "repository": "omarkebrit/gta5-ios-port-audited",
+  "visibility": "public",
+  "run_id": 38543383301,
+  "run_url": "https://github.com/omarkebrit/gta5-ios-port-audited/actions/runs/38543383301",
+  "head_sha": "d2b944172445d3fe2281483b7eea4caa718e196a",
+  "conclusion": "success",
+  "existing_tests": {
+    "passed": 11,
+    "blocked": 10,
+    "passed_tests": [
+      "arm_shared_simd",
+      "asset_hints",
+      "bc_textures",
+      "controller_look",
+      "engine_configuration",
+      "frame_metrics",
+      "frame_rate",
+      "memory_budget",
+      "native_runtime",
+      "packed_asset_cache",
+      "ring_packets"
+    ],
+    "blocked_tests": [
+      "asset_pipeline: Requires the real generated game.h and a configured HTTP range server.",
+      "frame_reports: Missing Source/NativeFrameReports.inc (legacy renderer test).",
+      "metal_buffer_cache: Missing PlayGTA5MetalBufferCache.h.",
+      "native_uniform_resolver: Missing webgpu.h and NativeUniforms.inc (legacy renderer test).",
+      "prepared_draws: Missing webgpu.h and NativeUniforms/NativePipelineCache/NativePreparedDraws.inc.",
+      "state_packing: Missing Resources/gpu-batch.js (legacy renderer test).",
+      "texture_rows: Missing Source/NativeTextureRows.h.",
+      "texture_views: Missing Source/NativeTextureView.h.",
+      "warm_dispatch: WarmDispatchHarness.inc references removed WebGPU renderer files.",
+      "warm_javascript: WarmDispatchHarness.inc references removed WebGPU renderer files."
+    ]
+  },
+  "added_pipeline_regressions": {
+    "passed": 4,
+    "failed": 0
+  },
+  "ios_sdk_source_checks": [
+    "syntax: Source/MetalGraphicsHost.mm",
+    "syntax: Source/MetalRenderer/MRFrameReports.mm",
+    "syntax: Source/MetalRenderer/MRRenderer.mm",
+    "syntax: Source/MetalRenderer/MRShaders.mm",
+    "syntax: archive installer shim",
+    "typecheck: all Swift app sources"
+  ],
+  "game_inputs_supplied": false,
+  "ipa_produced": false,
+  "installation_tested": false,
+  "gameplay_tested": false,
+  "evidence_source": "GitHub run metadata and decoded job log obtained through the GitHub connector. Artifact download was blocked by a redirect HTTP 403; this summary does not claim the artifact was downloaded."
+}
